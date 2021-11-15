@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    @GetMapping("/")
+    @GetMapping
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
     }
 }

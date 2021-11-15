@@ -10,7 +10,8 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Group {
+@Table(name = "groups")
+public class Group extends BaseTimeEntity {
 
     @Id
     @Column(name = "group_id")
@@ -21,10 +22,10 @@ public class Group {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "parent_id")
     private Group parent;
 
     @OneToMany(mappedBy = "parent")
-    private List<Group> children = new ArrayList<>();
+    private List<Group> child = new ArrayList<>();
 
 }

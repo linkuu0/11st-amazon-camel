@@ -14,7 +14,7 @@ public class Price {
     private Long id;
 
     @Column
-    private LocalDateTime dateTime;
+    private LocalDateTime timestamp;
 
     @Column
     private Long price;

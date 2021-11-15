@@ -2,6 +2,7 @@ package org.link.camel.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.link.camel.service.ItemService;
+import org.link.camel.web.ItemResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,10 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping("{itemId}")
-    public ResponseEntity<Long> itemInfo(Long itemId) {
-        return ResponseEntity.ok().body(itemId);
+    @GetMapping("{productId}")
+    public ResponseEntity<ItemResponse> productInfoMain(Long productId) {
+        ItemResponse response = itemService.getProductInfo(productId);
+        return ResponseEntity.ok().body(response);
     }
 
 }
