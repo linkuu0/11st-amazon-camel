@@ -2,6 +2,11 @@ spring:
   profiles:
     active: local
 
+config:
+  11st-api:
+    url: http://openapi.11st.co.kr/ # openapi/OpenApiService.tmall
+    key: db135628136ea74820b2890de13972ea
+
 ---
 spring:
   config:
@@ -17,7 +22,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop # validate
+      ddl-auto: create # validate
     properties:
       hibernate:
         format_sql: true

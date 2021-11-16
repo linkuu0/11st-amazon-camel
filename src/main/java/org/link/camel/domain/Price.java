@@ -1,10 +1,13 @@
 package org.link.camel.domain;
 
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @NoArgsConstructor
 public class Price {
@@ -22,5 +25,11 @@ public class Price {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+
+    @Builder
+    public Price(Item item, Long price) {
+        this.item = item;
+        this.price = price;
+    }
 
 }
