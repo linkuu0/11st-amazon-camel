@@ -14,88 +14,88 @@ import java.util.List;
 public class ProductInfoResponse {
 
     @XmlElement(name = "Request")
-    private Request request;
+    public Request request;
 
     @XmlElement(name = "Product")
-    private Product product;
+    public Product product;
 
     @Getter
     static class Request {
 
         @XmlElementWrapper(name = "Arguments")
         @XmlElement(name = "Argument")
-        private List<Argument> arguments;
+        public List<Argument> arguments;
 
         @XmlElement(name = "ProcessingTime")
-        private String processingTime;
+        public String processingTime;
 
     }
 
     @Getter
-    static class Product {
+    public static class Product {
 
         @XmlElement(name = "ProductCode")
-        private String productCode;
+        public String productCode;
 
         @XmlElement(name = "ProductName")
-        private String productName;
+        public String productName;
 
         @XmlElement(name = "ProductPrice")
-        private ProductPrice productPrice;
+        public ProductPrice productPrice;
 
         @XmlElement(name = "BasicImage")
-        private String basicImage;
+        public String basicImage;
 
         @XmlElement(name = "AddImage1")
-        private String addImage1;
+        public String addImage1;
 
         @XmlElement(name = "AddImage2")
-        private String addImage2;
+        public String addImage2;
 
         @XmlElement(name = "AddImage3")
-        private String addImage3;
+        public String addImage3;
 
         @XmlElement(name = "ImageL300")
-        private String imageL300;
+        public String imageL300;
 
         @XmlElement(name = "Point")
-        private Integer point;
+        public Integer point;
 
         @XmlElement(name = "Chip")
-        private Integer chip;
+        public Integer chip;
 
         @XmlElement(name = "Installment")
-        private String installment;
+        public String installment;
 
         @XmlElement(name = "ShipFee")
-        private String shipFee;
+        public String shipFee;
 
         @XmlElement(name = "SellSatisfaction")
-        private Integer sellSatisfaction;
+        public Integer sellSatisfaction;
 
         @XmlElement(name = "SellGrade")
-        private Integer sellGrade;
+        public Integer sellGrade;
     }
 
     @Getter
     @XmlAccessorType(XmlAccessType.PROPERTY)
-    static class Argument {
+    public static class Argument {
 
         @XmlAttribute
-        private String name;
+        public String name;
 
         @XmlAttribute
-        private String value;
+        public String value;
     }
 
     @Getter
-    static class ProductPrice {
+    public static class ProductPrice {
 
         @XmlElement(name = "Price")
-        private String price;
+        public String price;
 
         @XmlElement(name = "LowestPrice")
-        private String lowestPrice;
+        public String lowestPrice;
     }
 
 }

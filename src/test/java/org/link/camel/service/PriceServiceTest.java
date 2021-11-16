@@ -45,9 +45,10 @@ public class PriceServiceTest {
     @Test
     @Transactional(readOnly = true)
     public void savePriceTest() {
-        PriceSaveRequest request = new PriceSaveRequest();
-        request.setPrice(10000L);
-        request.setProductId(1L);
+        PriceSaveRequest request = PriceSaveRequest.builder()
+                .price(10000L)
+                .productId(1L)
+                .build();
 
         Long id = priceService.savePrice(request);
         Price price = priceRepository.findById(id).get();
