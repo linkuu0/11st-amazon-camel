@@ -16,10 +16,6 @@ public class PriceSaveRequest {
     private Long price;
     private LocalDateTime timestamp;
 
-    public PriceSaveRequest() {
-
-    }
-
     public Price toEntity(Item item) {
         return Price.builder()
                 .item(item)
