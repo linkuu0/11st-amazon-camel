@@ -98,4 +98,13 @@ public class ProductInfoResponse {
         public String lowestPrice;
     }
 
+    public Long getLowestPrice() {
+        String lowestPrice = this.product.getProductPrice()
+                .getLowestPrice();
+
+        return Long.valueOf(lowestPrice
+                .replace(",", "")
+                .replace("원",""));
+    }
+
 }

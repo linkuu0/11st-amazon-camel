@@ -1,7 +1,6 @@
 package org.link.camel.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.link.camel.config.ProductInfoResponse;
 import org.link.camel.service.PriceService;
 import org.link.camel.web.PriceSaveRequest;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class PriceController {
      */
     @GetMapping("{productId}")
     public ResponseEntity<PriceSaveRequest> productInfo(@PathVariable Long productId) throws ExecutionException, InterruptedException {
-        return ResponseEntity.ok().body(priceService.getPriceInfo(productId));
+        return ResponseEntity.ok().body(priceService.getLowestPriceInfo(productId));
     }
 
 }
