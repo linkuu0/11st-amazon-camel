@@ -21,7 +21,7 @@ public class RetrofitConfig {
     }
 
     @Bean
-    public PriceHttpApiService prideHttpApiService() {
+    public PriceHttpApiService priceHttpApiService() {
         Retrofit retrofit = retrofit();
         return retrofit.create(PriceHttpApiService.class);
     }
