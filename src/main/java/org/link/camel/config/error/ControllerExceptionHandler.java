@@ -43,15 +43,6 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-      // 인증 관련 오류 추가 필요!
-//    @ExceptionHandler(AccessDeniedException.class)
-//    protected ResponseEntity<ErrorResponse> handleInvalidParameterException(InvalidParameterException e) {
-//        log.error("handleInvalidParameterException", e);
-//        ErrorResponse response = new ErrorResponse();
-//
-//        return new ResponseEntity<>(response, HttpStatus.resolve(500));
-//    }
-
     // 비즈니스 로직 에러
     @ExceptionHandler(ServiceLogicException.class)
     protected ResponseEntity<ErrorResponse> handleServiceLogicException(ServiceLogicException e) {

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.ExecutionException;
-
 @RestController
 @RequestMapping("price")
 @RequiredArgsConstructor
@@ -18,17 +16,9 @@ public class PriceController {
 
     private final PriceService priceService;
 
-    /**
-     * 11st OpenAPI로 얻은 제품 정보
-     * TODO JSON 변환 필요함
-     * @param productId
-     * @return
-     * @throws ExecutionException
-     * @throws InterruptedException
-     */
     @GetMapping("{productId}")
-    public ResponseEntity<PriceSaveRequest> productInfo(@PathVariable Long productId) throws ExecutionException, InterruptedException {
-        return ResponseEntity.ok().body(priceService.getLowestPriceInfo(productId));
+    public ResponseEntity<PriceSaveRequest> productInfo(@PathVariable Long productId) {
+        return ResponseEntity.ok().body(priceService.getPriceInfo(productId));
     }
 
 }

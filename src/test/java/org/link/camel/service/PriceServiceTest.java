@@ -4,9 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.link.camel.config.PriceHttpApiCode;
-import org.link.camel.config.PriceHttpApiService;
-import org.link.camel.config.ProductInfoResponse;
+import org.link.camel.api.ProductHttpApiCode;
+import org.link.camel.api.ProductInfoResponse;
 import org.link.camel.domain.Item;
 import org.link.camel.domain.Price;
 import org.link.camel.repository.ItemRepository;
@@ -19,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,8 +27,12 @@ public class PriceServiceTest {
     @Autowired PriceService priceService;
     @Autowired PriceRepository priceRepository;
 
-    @Autowired ItemRepository itemRepository;
-    @Autowired PriceHttpApiService apiService;
+    @Autowired
+    ItemRepository itemRepository;
+    @Autowired
+    ProductHttpApiService apiService;
+
+    @Autowired Executor asyncExecutor;
 
     @Value("${config.11st-api.key}")
     String apiKey;
@@ -36,10 +40,10 @@ public class PriceServiceTest {
 
     @Before
     public void initItem() {
-        itemRepository.save(Item.builder()
-                .productId(1L)
-                .name("테스트")
-                .build());
+//        itemRepository.save(Item.builder()
+//                .productId(1L)
+//                .name("테스트")
+//                .build());
     }
 
     @Test
@@ -61,11 +65,13 @@ public class PriceServiceTest {
     public void getPriceInfoTest() throws ExecutionException, InterruptedException {
         Long productId = 3545503877L;
 
-        ProductInfoResponse response = apiService.getPriceInfo(apiKey, PriceHttpApiCode.PRODUCT_INFO.getCode(), productId).get();
-
+        ProductInfoResponse response = apiService.getProductInfo(apiKey, ProductHttpApiCode.PRODUCT_INFO.getCode(), productId).get();
         System.out.println("response = " + response);
+    }
 
-
+    @Test
+    public void savePriceScheduledTest() {
+        priceService.savePriceScheduled();
     }
 
 }

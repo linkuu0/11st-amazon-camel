@@ -1,4 +1,4 @@
-package org.link.camel.config;
+package org.link.camel.api;
 
 import lombok.Getter;
 
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Getter
 @XmlRootElement(name = "ErrorResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ApiErrorResponse {
+public class ApiErrorResponse implements ApiResponse {
 
     @XmlElement(name = "ErrorCode")
     private String errorCode;

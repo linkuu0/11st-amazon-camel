@@ -1,6 +1,8 @@
-package org.link.camel.config;
+package org.link.camel.api;
 
 import lombok.Getter;
+import org.link.camel.web.ItemSaveRequest;
+import org.link.camel.web.PriceSaveRequest;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 @Getter
 @XmlRootElement(name = "ProductInfoResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ProductInfoResponse {
+public class ProductInfoResponse implements ApiResponse {
 
     @XmlElement(name = "Request")
     public Request request;
@@ -35,7 +37,7 @@ public class ProductInfoResponse {
     public static class Product {
 
         @XmlElement(name = "ProductCode")
-        public String productCode;
+        public Long productCode;
 
         @XmlElement(name = "ProductName")
         public String productName;
@@ -99,12 +101,39 @@ public class ProductInfoResponse {
     }
 
     public Long getLowestPrice() {
-        String lowestPrice = this.product.getProductPrice()
-                .getLowestPrice();
+        String lowestPrice = this.product.getProductPrice().getLowestPrice();
 
-        return Long.valueOf(lowestPrice
-                .replace(",", "")
-                .replace("원",""));
+        return convertStringToLong(lowestPrice);
+    }
+
+    public Long getShipFee() {
+        String shipFee = this.product.getShipFee();
+
+        return convertStringToLong(shipFee);
+    }
+
+    public Long convertStringToLong(String value) {
+        value = value.replaceAll("\\D", "");
+        if ("".equals(value))
+            return 0L;
+
+        return Long.valueOf(value);
+    }
+
+    public ItemSaveRequest toItemSaveRequest() {
+        return ItemSaveRequest.builder()
+                .productId(this.product.getProductCode())
+                .productType(null)
+                .name(this.product.getProductName())
+                .build();
+    }
+
+    public PriceSaveRequest toPriceSaveRequest() {
+        return PriceSaveRequest.builder()
+                .productId(this.product.getProductCode())
+                .price(getLowestPrice())
+                .shipFee(getShipFee())
+                .build();
     }
 
 }
