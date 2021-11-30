@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("price")
+@RequestMapping("products")
 @RequiredArgsConstructor
 public class PriceController {
 
     private final PriceService priceService;
 
-    @GetMapping("{productId}")
+    @GetMapping("{productId}/prices/current")
     public ResponseEntity<PriceSaveRequest> productInfo(@PathVariable Long productId) {
         return ResponseEntity.ok().body(priceService.getPriceInfo(productId));
     }
