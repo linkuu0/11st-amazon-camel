@@ -1,4 +1,4 @@
-package org.link.camel.domain;
+package org.link.camel.domain.common;
 
 import lombok.Getter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

@@ -3,6 +3,7 @@ package org.link.camel.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.link.camel.domain.common.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
