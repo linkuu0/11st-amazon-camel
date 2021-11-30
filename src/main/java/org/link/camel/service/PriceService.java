@@ -56,7 +56,6 @@ public class PriceService {
         return CompletableFuture.supplyAsync(() -> {
             ProductInfoResponse response = productService.searchProductInfoResponse(item.getProductId());
             PriceSaveRequest request = response.toPriceSaveRequest();
-
             return request.toEntity(item);
         }, asyncExecutor);
     }
