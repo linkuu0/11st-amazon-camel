@@ -13,7 +13,7 @@ import javax.xml.bind.JAXBException;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("products")
 @RequiredArgsConstructor
 public class ItemController {
 
