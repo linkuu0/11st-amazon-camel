@@ -9,6 +9,7 @@ import org.link.camel.domain.Item;
 import org.link.camel.domain.Price;
 import org.link.camel.repository.ItemRepository;
 import org.link.camel.repository.PriceRepository;
+import org.link.camel.web.PricePeriodRequest;
 import org.link.camel.web.PriceSaveRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,12 @@ public class PriceService {
     private final PriceRepository priceRepository;
 
     private final Executor asyncExecutor;
+
+    @Transactional(readOnly = false)
+    public List<Price> getPriceList(Long productId, PricePeriodRequest request) {
+        // request 추후 구현
+        return priceRepository.findByItem(productId);
+    }
 
     @Transactional(readOnly = true)
     public Long savePrice(PriceSaveRequest request) {
