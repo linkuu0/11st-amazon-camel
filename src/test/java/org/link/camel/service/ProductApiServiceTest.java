@@ -2,7 +2,10 @@ package org.link.camel.service;
 
 import com.linecorp.armeria.client.WebClient;
 import com.linecorp.armeria.client.retrofit2.ArmeriaRetrofit;
-import com.linecorp.armeria.common.*;
+import com.linecorp.armeria.common.AggregatedHttpResponse;
+import com.linecorp.armeria.common.HttpHeaderNames;
+import com.linecorp.armeria.common.HttpMethod;
+import com.linecorp.armeria.common.RequestHeaders;
 import org.junit.Test;
 import org.link.camel.api.ProductHttpApiCode;
 import org.link.camel.api.ProductInfoResponse;
@@ -12,7 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 
 public class ProductApiServiceTest {
