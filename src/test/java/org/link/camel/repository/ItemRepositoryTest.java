@@ -1,15 +1,15 @@
 package org.link.camel.repository;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.link.camel.domain.Item;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ItemRepositoryTest {
 
     @Autowired
@@ -18,12 +18,11 @@ public class ItemRepositoryTest {
     @Test
     public void saveTest() {
         Item item = Item.builder()
-                .productId(1L)
                 .name("테스트")
                 .build();
 
         Item save = itemRepository.save(item);
-        Assertions.assertThat(save.getProductId()).isEqualTo(1L);
+        Assertions.assertThat(save.getName()).isEqualTo(item.getName());
 
     }
 
