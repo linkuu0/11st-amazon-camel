@@ -6,7 +6,7 @@ import com.linecorp.armeria.common.AggregatedHttpResponse;
 import com.linecorp.armeria.common.HttpHeaderNames;
 import com.linecorp.armeria.common.HttpMethod;
 import com.linecorp.armeria.common.RequestHeaders;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.link.camel.api.ProductHttpApiCode;
 import org.link.camel.api.ProductInfoResponse;
 import org.springframework.web.util.UriComponents;
